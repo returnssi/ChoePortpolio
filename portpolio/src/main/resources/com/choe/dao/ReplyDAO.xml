@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.choe.dao.ReplyDAO">
+ 	<insert id="add">
+ 		insert into qreply(qreply_nickname, qreply_wrid, qreply_comment, qna_id)
+		values(#{qreply_nickname}, #{qreply_wrid},#{qreply_comment},#{qna_id})
+ 	</insert>
+ 	
+ 	<select id="list" resultType="com.choe.dto.ReplyDTO">
+ 		select * 
+ 		from qreply 
+ 		where qna_id=#{qna_id}
+ 		order by qreply_no desc
+ 	</select>
+ 	
+ 	<select id="detail" resultType="com.choe.dto.ReplyDTO">
+ 		select *
+ 		from qreply
+ 		where qreply_no=#{qreply_no}
+ 	</select>
+ 	
+ 	<update id="modify">
+ 	UPDATE qreply
+ 	SET qreply_comment = #{qreply_comment}
+ 	WHERE qreply_no=#{qreply_no}
+ 	</update>
+ 	
+ 	<delete id="remove">
+ 		DELETE FROM 
+ 		qreply 
+ 		WHERE qreply_no=#{qreply_no}
+ 	</delete>
+ </mapper>

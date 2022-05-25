@@ -1,0 +1,201 @@
+/* 
+    - ChoeYeongHwan's PortPolio
+    - helpodinbox@gmail.com
+    개인정보가 포함되어져있으므로 본인(최영환)이외 사용을 허가하지않습니다.
+
+    http://meyerweb.com/eric/tools/css/reset/ 
+    v2.0 | 20110126
+    License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	text-decoration: none;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	height: 100%;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+@font-face {
+    font-family: 'hanna';
+    src: url('../ttf/BMHANNAPro.ttf') format('truetype');
+}
+
+/* CSS 초기화 */
+
+/* 배경이미지 시작 */
+html{
+	background: url(../img/main.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover; 
+	-moz-background-size: cover; 
+	-o-background-size: cover; 
+	background-size: cover;
+}
+/* 배경이미지 끝 */
+
+/* 타이핑효과 시작 */
+#main {
+	color: #fff;
+	font-size: 10vw;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	/* padding: 5%; */
+	font-family: "hanna";
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+}
+/* 타이핑효과 끝 */
+
+/* .maintitle 시작 */
+.maintitle{
+	color: #fff;
+	font-size: 5vw;
+	font-family: "hanna";
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 50vh;
+}
+/* .maintitle 끝 */
+
+/* #btnDiv 시작 */
+#btnDiv{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+/* #btnDiv 끝 */
+
+
+/* #show 시작 */
+/* #show{
+	display: none;
+	width: 15%;
+	height: 50px;
+	background-color: #0475E6;
+	border: 0;
+	border-radius: 20px;
+} */
+#show {
+	background: #b621fe;
+	border: none;
+	z-index: 1;
+	display: none;
+  }
+
+#show:after {
+	position: absolute;
+	content: "";
+	width: 0;
+	height: 100%;
+	top: 0;
+	right: 0;
+	z-index: -1;
+	background-color: #663dff;
+	border-radius: 5px;
+	 box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+	 7px 7px 20px 0px rgba(0,0,0,.1),
+	 4px 4px 5px 0px rgba(0,0,0,.1);
+	transition: all 0.3s ease;
+  }
+  #show:hover {
+	color: #fff;
+  }
+  #show:hover:after {
+	left: 0;
+	width: 100%;
+  }
+  #show:active {
+	top: 2px;
+  }
+  
+  #show {
+	width: 130px;
+	height: 40px;
+	color: #fff;
+	border-radius: 5px;
+	padding: 10px 25px;
+	font-family: 'Lato', sans-serif;
+	font-weight: 500;
+	background: transparent;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	display: none;
+	 box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+	 7px 7px 20px 0px rgba(0,0,0,.1),
+	 4px 4px 5px 0px rgba(0,0,0,.1);
+	outline: none;
+	background-color: #222;
+  }
+/* #show 끝 */
+
+#show a{
+	display: inline-block;
+	color: #fff;
+	font-size: 1vw;
+	font-weight: 700;
+	line-height: 30px;
+	font-family: "hanna";
+}
+
+#smalltitle{
+	font-weight: 700;
+	font-size: 0.5vw;
+	color: #fff;
+	display: block;
+	font-family: "hanna";
+}
+
+#copyright{
+	color: #fff;
+	font-size: 0.9vw;
+	font-weight: 700;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	bottom: 0;
+}

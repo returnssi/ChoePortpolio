@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choe.dao.noticeDAO">
+	<insert id="noticeWrite">
+		<selectKey keyProperty="notice_id" resultType="int" order="BEFORE">
+			select max(notice_id)+1 notice_id from notice
+		</selectKey>
+		insert into notice(notice_title,notice_content,notice_wrnick,notice_wrid)
+		values(#{notice_title},#{notice_content},#{notice_wrnick},#{notice_wrid})
+	</insert>
+	
+	<select id="noticeList" resultType="com.choe.dto.noticeDTO">
+		
+ 		select *
+ 		from (
+ 		select @rownum:=@rownum+1 as rownum, b.*
+ 		from(select @rownum:=0) as tmp, notice as b
+ 		<if test="type != null">
+		<choose>
+<!-- 		Type =! 벨류 -->
+    	<when test="type == 't'.toString()">
+			WHERE notice_title like concat('%',#{keyword},'%')
+		</when>
+		<when test="type == 'w'.toString()">
+			WHERE notice_wrnick like concat('%',#{keyword},'%')
+		</when>
+		<otherwise>
+			WHERE ( notice_title like CONCAT('%', #{keyword}, '%')
+			OR notice_content like CONCAT('%', #{keyword}, '%')
+			OR notice_wrnick like CONCAT('%', #{keyword}, '%') )
+		</otherwise>
+		</choose>
+		</if>
+ 		order by notice_id desc
+ 		) as noticeList
+ 		<![CDATA[
+ 		where rownum > (#{pagenum} - 1) * #{amount} and rownum <= #{pagenum} * #{amount}
+ 		]]>
+
+<!-- 		<![CDATA[ -->
+<!--             select * -->
+<!--             from tbl_board -->
+<!--             where bno > 0 -->
+<!-- 	    ]]> -->
+
+	</select>
+	
+	<select id="noticeDetail" resultType="com.choe.dto.noticeDTO">
+		select * from notice where notice_id=#{notice_id}
+	</select>
+	
+	<update id="noticeCntUp">
+		update notice set notice_count=notice_count+1 where notice_id=#{notice_id}
+	</update>
+	
+	<update id="noticeModify">
+		update notice set notice_title=#{notice_title}, notice_content=#{notice_content} where notice_id=#{notice_id}
+	</update>
+	
+	<delete id="noticeRemove">
+		delete from notice where notice_id=#{notice_id}
+	</delete>
+	
+	<select id = "getTotalCount" resultType="int">
+			select count(*) from notice
+		<if test="type != null">
+		<choose>
+<!-- 		Type =! 벨류 -->
+    	<when test="type == 't'.toString()">
+			where notice_title like concat('%',#{keyword},'%')
+		</when>
+		<when test="type == 'w'.toString()">
+			where notice_wrnick like concat('%',#{keyword},'%')
+		</when>
+		<otherwise>
+			where notice_title like concat('%',#{keyword},'%')
+			OR notice_wrnick like concat('%',#{keyword},'%')
+		</otherwise>
+		</choose>
+		</if>
+	</select>
+	
+	<select id="AttachList" resultType="com.choe.dto.AttachFileDTO">
+		select * from notice where notice_id=#{notice_id}
+	</select>
+	
+</mapper>
