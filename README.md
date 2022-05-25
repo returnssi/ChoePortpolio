@@ -9,5 +9,6 @@
 | Spring | JAVA |  MYSQL   |  Javascript   |  JSP   |  CSS   |
 | :--------: | :--------: | :------: | :-----: | :-----: | :-----: |
 
-MIT &copy; [NoHack](mailto:helpodinbox@gmail.com)
+MIT &copy; [Returnssi](mailto:helpodinbox@gmail.com)
+
 ![Footer](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer)
